@@ -1,16 +1,15 @@
 "use client";
 import { useState, FormEvent } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 import axiosInstance from "@/utils/axios";
 
 const TwoFactorAuth = () => {
   const [otp, setOtp] = useState("");
+  const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
-  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
