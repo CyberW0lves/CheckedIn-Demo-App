@@ -8,7 +8,7 @@
 
 - Create .env file at root and add API Url
 
-  - => REACT_APP_API_URL = "http://localhost:8080/api"
+  - => NEXT_PUBLIC_API_URL = "http://localhost:8080/api"
 
 - Run the application in Dev mode
 
