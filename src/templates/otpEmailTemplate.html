@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Verification Code</title>
+  <style>
+    /* Base reset */
+    body, p, h1, h2, h3 { margin: 0; padding: 0; }
+    body { font-family: 'Arial', sans-serif; background-color: #f4f4f7; color: #51545e; }
+
+    .email-wrapper {
+      width: 100%; 
+      background-color: #f4f4f7; 
+      padding: 20px 0;
+    }
+    .email-content {
+      max-width: 600px; 
+      margin: 0 auto; 
+      background-color: #ffffff; 
+      border-radius: 8px; 
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .email-header {
+      background-color: #1cd8d2; 
+      padding: 20px; 
+      text-align: center;
+    }
+    .email-header h1 {
+      color: #ffffff; 
+      font-size: 24px; 
+      font-weight: normal;
+    }
+
+    .email-body {
+      padding: 30px 20px;
+      line-height: 1.6;
+    }
+    .email-body p {
+      margin-bottom: 16px;
+    }
+
+    .otp-code {
+      display: block;
+      margin: 20px auto;
+      background-color: #f0f3ff;
+      color: #3869d4;
+      font-size: 32px;
+      letter-spacing: 4px;
+      font-weight: bold;
+      width: fit-content;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+
+    .email-footer {
+      background-color: #f4f4f7;
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #6b6e76;
+    }
+
+    a {
+      color: #3869d4;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="email-content">
+      <div class="email-header">
+        <h1>CheckedIn</h1>
+      </div>
+      <div class="email-body">
+        <p>Hi there,</p>
+        <p>Use the following One-Time Password (OTP) to login to your account. This code is valid for the next <strong>10 minutes</strong>.</p>
+        <span class="otp-code">{{OTP_CODE}}</span>
+        <p>Thanks,<br/>The CheckedIn Team</p>
+      </div>
+      <div class="email-footer">
+        &copy; 2025 CheckedIn Inc. All rights reserved.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
