@@ -89,7 +89,7 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
       "accessToken",
       { accessToken },
       {
-        sameSite: "strict",
+        sameSite: "none",
         secure: true,
         path: "/",
         httpOnly: true,
@@ -101,7 +101,7 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
       "refreshToken",
       { refreshToken },
       {
-        sameSite: "strict",
+        sameSite: "none",
         secure: true,
         path: "/",
         partitioned: true,
@@ -148,7 +148,7 @@ router.post(
         "accessToken",
         { accessToken },
         {
-          sameSite: "strict",
+          sameSite: "none",
           path: "/",
           httpOnly: true,
           partitioned: true,
