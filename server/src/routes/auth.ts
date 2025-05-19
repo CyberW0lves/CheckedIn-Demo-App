@@ -93,6 +93,7 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
         secure: true,
         path: "/",
         httpOnly: true,
+        partitioned: true,
         maxAge: 14 * 60 * 1000, // 14 minutes in milliseconds
       }
     );
@@ -103,6 +104,7 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
         sameSite: "strict",
         secure: true,
         path: "/",
+        partitioned: true,
         maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
       }
     );
@@ -149,6 +151,7 @@ router.post(
           sameSite: "strict",
           path: "/",
           httpOnly: true,
+          partitioned: true,
           maxAge: 14 * 60 * 1000, // 14 minutes in milliseconds
           secure: true,
         }
