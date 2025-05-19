@@ -1,10 +1,9 @@
 import Profile from "@/components/Profile";
-import { cookies } from "next/headers";
+import { getCookie } from "cookies-next";
 import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
-  const cookieStore = cookies();
-  const tokenCookie = (await cookieStore).get("refreshToken")?.value;
+  const tokenCookie = getCookie("refreshToken");
   if (!tokenCookie) redirect("/");
 
   return (
