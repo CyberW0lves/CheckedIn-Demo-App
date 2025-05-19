@@ -13,12 +13,7 @@ dbConnect();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
