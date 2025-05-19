@@ -93,7 +93,6 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
         secure: true,
         path: "/",
         httpOnly: true,
-        partitioned: true,
         maxAge: 14 * 60 * 1000, // 14 minutes in milliseconds
       }
     );
@@ -104,7 +103,6 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
         sameSite: "none",
         secure: true,
         path: "/",
-        partitioned: true,
         maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
       }
     );
@@ -153,7 +151,6 @@ router.post(
           httpOnly: true,
           maxAge: 14 * 60 * 1000, // 14 minutes in milliseconds
           secure: true,
-          partitioned: true,
         }
       );
       res.status(200).json({ msg: "New Access Token Generated" });
