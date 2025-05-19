@@ -93,7 +93,6 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
         path: "/",
         httpOnly: true,
         maxAge: 14 * 60 * 1000, // 14 minutes in milliseconds
-        secure: true,
       }
     );
     res.cookie(
@@ -103,7 +102,6 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
         sameSite: "none",
         path: "/",
         maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-        secure: true,
       }
     );
     res.status(200).json({ msg: "Logged In Successfully" });
@@ -150,7 +148,6 @@ router.post(
           path: "/",
           httpOnly: true,
           maxAge: 14 * 60 * 1000, // 14 minutes in milliseconds
-          secure: true,
         }
       );
       res.status(200).json({ msg: "New Access Token Generated" });
