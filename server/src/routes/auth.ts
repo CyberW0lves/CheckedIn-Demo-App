@@ -89,7 +89,7 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
       "accessToken",
       { accessToken },
       {
-        sameSite: "strict",
+        sameSite: "none",
         path: "/",
         httpOnly: true,
         maxAge: 14 * 60 * 1000, // 14 minutes in milliseconds
@@ -100,7 +100,7 @@ router.post("/2fa", async (req: Request, res: Response): Promise<any> => {
       "refreshToken",
       { refreshToken },
       {
-        sameSite: "strict",
+        sameSite: "none",
         path: "/",
         maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
         secure: true,
@@ -146,7 +146,7 @@ router.post(
         "accessToken",
         { accessToken },
         {
-          sameSite: "strict",
+          sameSite: "none",
           path: "/",
           httpOnly: true,
           maxAge: 14 * 60 * 1000, // 14 minutes in milliseconds
