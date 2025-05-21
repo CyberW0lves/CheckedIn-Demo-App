@@ -120,16 +120,13 @@ router.post(
   "/refreshToken",
   async (req: Request, res: Response): Promise<any> => {
     try {
-      // validate body of API
-      const schema = Joi.object({
-        refreshToken: Joi.string().required().label("Refresh Token"),
-      });
-      const { error } = schema.validate(req.body);
-      if (error) return res.status(400).json({ msg: error.details[0].message });
+      const token = req.cookies.refreshToken?.refreshToken;
+      if (!token)
+        return res.status(401).json({ message: "Token Not Provided" });
 
       // verify refresh token
       const payload: any = jwt.verify(
-        req.body.refreshToken,
+        token,
         process.env.REFRESH_TOKEN_PRIVATE_KEY!
       );
 
@@ -139,7 +136,7 @@ router.post(
 
       // generate new access token
       const accessToken = jwt.sign(
-        { _id: tokenDetails._id, roles: payload.roles },
+        { _id: tokenDetails._id },
         process.env.ACCESS_TOKEN_PRIVATE_KEY!,
         { expiresIn: "14m" }
       );
