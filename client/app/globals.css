@@ -14,3 +14,54 @@ input::placeholder {
   color: black;
   font-size: 14px;
 }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: 2px solid white;
+  width: 150px;
+  height: 50px;
+  font-size: 18px;
+  transition-property: all;
+  cursor: pointer;
+  transition-timing-function: var(
+    --tw-ease,
+    var(--default-transition-timing-function) /* cubic-bezier(0.4, 0, 0.2, 1) */
+  );
+  transition-duration: var(
+    --tw-duration,
+    var(--default-transition-duration) /* 150ms */
+  );
+}
+
+.btn:hover {
+  background: white;
+  color: #1cd8d2;
+}
+
+.btn:hover > .loader {
+  border-color: #1cd8d2;
+  border-bottom-color: transparent;
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

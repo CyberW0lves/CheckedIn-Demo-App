@@ -27,6 +27,7 @@ const SignUp = () => {
     company: "",
     avatar: null,
   });
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -50,6 +51,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    console.log(formValues.avatar);
 
     if (!formValues.avatar)
       return toast.error("Please upload an avatar image!");
@@ -66,8 +68,10 @@ const SignUp = () => {
     payload.append("avatar", formValues.avatar);
 
     try {
+      setLoading(true);
       const response = await axiosInstance.post("/users", payload);
       router.push("/login");
+      setLoading(false);
       toast.success(response.data.msg);
       setFormValues({
         name: "",
@@ -80,6 +84,7 @@ const SignUp = () => {
       });
       setPreview(null);
     } catch (error: any) {
+      setLoading(false);
       console.log(error);
       toast.error(error.response.data.msg);
     }
@@ -164,11 +169,8 @@ const SignUp = () => {
             required
           />
         </div>
-        <button
-          className="text-white border-2 px-[30px] py-[8px] text-[18px] border-white cursor-pointer my-[20px] hover:bg-white hover:text-[#1cd8d2] transition-all"
-          type="submit"
-        >
-          Submit
+        <button className="btn my-[20px]" type="submit">
+          {loading ? <span className="loader"></span> : "Submit"}
         </button>
       </form>
       <p className="absolute bottom-[20px] right-[30px] text-[14px] uppercase">

@@ -83,8 +83,17 @@ router.get("/me", auth, async (req: MyRequest, res: Response) => {
 router.delete("/me", auth, async (req: MyRequest, res: Response) => {
   try {
     await User.findByIdAndDelete(req.user?.id);
-    res.clearCookie("accessToken");
-    res.clearCookie("refreshToken");
+    res.clearCookie("accessToken", {
+      sameSite: "none",
+      httpOnly: true,
+      partitioned: true,
+      secure: true,
+    });
+    res.clearCookie("refreshToken", {
+      sameSite: "none",
+      partitioned: true,
+      secure: true,
+    });
     res.status(200).json({ msg: "Account Deleted Successfully" });
   } catch (err) {
     res.status(500).json({ msg: "Internal Server Error!" });

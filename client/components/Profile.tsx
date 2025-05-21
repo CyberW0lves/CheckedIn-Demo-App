@@ -5,25 +5,19 @@ import toast from "react-hot-toast";
 
 import axiosInstance from "@/utils/axios";
 
-const Profile = () => {
-  const [userInfo, setUserInfo] = useState<any>({});
+const Profile = ({ userInfo }: any) => {
   const router = useRouter();
-
-  useEffect(() => {
-    const getUserInfo = async () => {
-      const response = await axiosInstance.get("/users/me");
-      setUserInfo(response.data.data);
-    };
-
-    getUserInfo();
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
     try {
+      setLoading(true);
       const response = await axiosInstance.delete("/users/me");
       router.push("/");
+      setLoading(false);
       toast.success(response.data.msg);
     } catch (error: any) {
+      setLoading(false);
       console.log(error);
       toast.error(error.response.data.msg);
     }
@@ -110,10 +104,9 @@ const Profile = () => {
         </div>
         <button
           onClick={handleDelete}
-          className="w-[600px] text-red-500 border-2 px-[30px] py-[8px] text-[18px] border-red-500 cursor-pointer my-[20px] hover:bg-red-500 hover:text-[#1cd8d2] transition-all"
-          type="submit"
+          className="btn my-[20px] text-red-500! border-red-500! w-[600px]! hover:bg-red-500! hover:text-[#1cd8d2]!"
         >
-          Delete Account
+          {loading ? <span className="loader"></span> : "Delete Account"}
         </button>
       </div>
     </>

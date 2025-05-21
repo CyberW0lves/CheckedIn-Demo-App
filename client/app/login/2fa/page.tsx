@@ -9,6 +9,7 @@ import axiosInstance from "@/utils/axios";
 const TwoFactorAuth = () => {
   const [otp, setOtp] = useState("");
   const [email, setEmail] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -18,12 +19,14 @@ const TwoFactorAuth = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await axiosInstance.post("/auth/2fa", { email, otp });
-
       router.push("/dashboard");
+      setLoading(false);
       toast.success(response.data.msg);
       setOtp("");
     } catch (error: any) {
+      setLoading(false);
       console.log(error);
       toast.error(error.response.data.msg);
     }
@@ -45,11 +48,9 @@ const TwoFactorAuth = () => {
         onChange={(e) => setOtp(e.target.value)}
         required
       />
-      <button
-        className="text-white border-2 px-[30px] py-[8px] text-[24px] border-white cursor-pointer my-[5px] hover:bg-white hover:text-[#1cd8d2] transition-all"
-        type="submit"
-      >
-        Verify
+
+      <button className="btn my-[5px]" type="submit">
+        {loading ? <span className="loader"></span> : "Verify"}
       </button>
     </form>
   );

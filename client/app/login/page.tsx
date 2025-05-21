@@ -16,6 +16,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,14 +27,17 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await axiosInstance.post("/auth", formValues);
       router.push(`/login/2fa?email=${formValues.email}`);
+      setLoading(false);
       toast.success(response.data.msg);
       setFormValues({
         email: "",
         password: "",
       });
     } catch (error: any) {
+      setLoading(false);
       console.log(error);
       toast.error(error.response.data.msg);
     }
@@ -63,11 +67,8 @@ const Login = () => {
           onChange={handleChange}
           required
         />
-        <button
-          className="text-white border-2 px-[30px] py-[8px] text-[18px] border-white cursor-pointer my-[20px] hover:bg-white hover:text-[#1cd8d2] transition-all"
-          type="submit"
-        >
-          Submit
+        <button className="btn my-[20px]" type="submit">
+          {loading ? <span className="loader"></span> : "Submit"}
         </button>
       </form>
       <p className="absolute bottom-[20px] right-[30px] text-[14px] uppercase">

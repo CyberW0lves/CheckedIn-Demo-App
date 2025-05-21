@@ -167,15 +167,17 @@ router.post(
 // Logout API
 router.post("/logout", async (req: Request, res: Response): Promise<any> => {
   try {
-    // validate body of API
-    const schema = Joi.object({
-      refreshToken: Joi.string().required().label("Refresh Token"),
+    res.clearCookie("accessToken", {
+      sameSite: "none",
+      httpOnly: true,
+      partitioned: true,
+      secure: true,
     });
-    const { error } = schema.validate(req.body);
-    if (error) return res.status(400).json({ msg: error.details[0].message });
-
-    res.clearCookie("accessToken");
-    res.clearCookie("refreshToken");
+    res.clearCookie("refreshToken", {
+      sameSite: "none",
+      partitioned: true,
+      secure: true,
+    });
     res.status(200).json({ msg: "Logged Out Successfully" });
   } catch (err) {
     res.status(500).json({ msg: "Internal Server Error" });
