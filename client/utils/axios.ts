@@ -3,6 +3,7 @@ import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
+  headers: { "Content-Type": "application/json" },
 });
 
 axiosInstance.interceptors.response.use(

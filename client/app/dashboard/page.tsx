@@ -10,6 +10,8 @@ const verifyIfUserAuthenticated = async () => {
 };
 
 const Dashboard = async () => {
+  await verifyIfUserAuthenticated();
+
   return (
     <div className="w-screen h-screen flex items-center justify-center relative">
       <Profile />
