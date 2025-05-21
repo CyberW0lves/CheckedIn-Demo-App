@@ -18,11 +18,8 @@ const TwoFactorAuth = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post(
-        "/auth/2fa",
-        { email, otp },
-        { withCredentials: true }
-      );
+      const response = await axiosInstance.post("/auth/2fa", { email, otp });
+
       router.push("/dashboard");
       toast.success(response.data.msg);
       setOtp("");
